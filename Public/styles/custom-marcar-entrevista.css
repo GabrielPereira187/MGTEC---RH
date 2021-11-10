@@ -1,0 +1,54 @@
+@import url(./bootstrap.min.css);
+@import url(./global.css);
+
+/*forms*/
+.label1{
+    width: 110px;
+}
+
+.label2{
+    width: 160px;
+}
+
+.row{
+    margin-bottom: 25px;
+}
+
+.form-control{
+    width: 45vw;
+    max-width: 190px;
+}
+
+.form-select{
+    margin-left: 0px;
+    margin-right: 11px;
+    height: 23px;
+    width: 45vw;
+    max-width: 190px;
+    font-size: 15px;
+    padding: 0 0 0 10px;
+    color: #212529;
+}
+
+.form-select:focus{
+    box-shadow: 0 0 5px #9a5ec9;
+    border-color: #ced4da;
+}
+
+.footer{
+    position: absolute;
+    width: 100%;
+    bottom: -1;
+}
+
+/*separação*/
+hr{
+    margin: 0 0 25px 0;
+}
+
+/*@media screens*/
+@media screen and (min-width:576px){
+    .form-control, .form-select{
+        margin: 0;
+    }
+}

@@ -1,0 +1,27 @@
+@import url(./custom-gerenciar-candidato.css);
+
+.btn-search .btn{
+    margin-right: 10px;
+}
+
+.footer{
+    bottom: -1;
+}
+
+
+/*@media screens*/
+@media screen and (min-width:576px){
+
+}
+
+@media screen and (min-width:700px){
+
+}
+
+@media screen and (min-width:900px){
+
+}
+
+@media screen and (min-width:1250px){
+
+}
