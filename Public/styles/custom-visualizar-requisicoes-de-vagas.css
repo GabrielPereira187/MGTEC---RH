@@ -1,17 +1,38 @@
-@import url(./bootstrap.min.css);
-@import url(./global.css);
+@import url(./custom-vagas-candidatadas.css);
 @import url(./custom-requisicao-de-vaga.css);
 
-/*tittles*/
+/*titles*/
 .title{
     width: 100%;
 }
 
-/*forms*/
+.vagas .title{
+    margin-bottom: 30px;
+}
+
+.excluir{
+    border-color: rgb(175, 14, 14);
+}
+
+.excluir:hover, .excluir:active{
+    background-color: rgb(175, 14, 14);
+    border-color: rgb(175, 14, 14);
+}
+
+.aprovar{
+    border-color: rgb(1, 173, 10);
+}
+
+.aprovar:hover, .aprovar:active{
+    background-color: rgb(1, 173, 10);
+    border-color: rgb(1, 173, 10);
+}
+
+/*forms
 .edit{
     color: #B8B8B8;
 }
 
 .edit:focus{
     color: #212529;
-}
+}*/
