@@ -10,35 +10,108 @@
     <link rel="stylesheet" href="/styles/custom-home.css">
 
     <title>Home</title>
+
 </head>
 
 <body>
     <!--Header-->
     <nav class="navbar navbar-expand-lg navbar-dark" id="header">
         <div class="container-fluid background-navbar">
-            <a class="navbar-brand" href="#"><img src="/images/global/logo.svg" alt=""></a>
+            <a class="navbar-brand" href="/home"><img src="/images/global/logo.svg" alt=""></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <img src="/images/global/navbar-button.svg" class="navbar-button">
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="#">Entrar</a>
-                    <a class="nav-link" href="#scroll-1">Sobre</a>
-                    <a class="nav-link" href="#scroll-2">Quem Somos</a>
-                    <a class="nav-link" href="#scroll-3">Nossos Líderes</a>
-                    <a class="nav-link" href="#scroll-4">Trabalhe Conosco</a>
-                    <a class="nav-link" href="#scroll-5">Contato</a>
+            <?php if($_SESSION['tipo_user'] == 1){ ?>
+                <!-- Usuário comum -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        <a class="nav-link" href="/perfil_ver">Candidato</a>
+                        <a class="nav-link" href="/#sobre_nos">Sobre</a>
+                        <a class="nav-link" href="/#quem_somos">Quem Somos</a>
+                        <a class="nav-link" href="/#nossa_equipe">Nossos Líderes</a>
+                        <a class="nav-link" href="/#vagas_abertas">Trabalhe Conosco</a>
+                        <a class="nav-link" href="/#contate_nos">Contato</a>
+                        <a class="nav-link" href="/usuario_sair">Sair</a>
+                    </div>
                 </div>
-            </div>
+            <?php } elseif($_SESSION['tipo_user'] == 2) { ?>
+                <!-- Usuário funcionário -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" href="/home">Home</a>
+                        <a class="nav-link" href="">Funcionário</a>
+                        <a class="nav-link" href="/gerenciar_candidato">Candidatos</a>
+                        <a class="nav-link" href="/gerenciar_vaga">Vagas</a>
+                        <a class="nav-link" href="/gerenciar_processo_seletivo">Processos Seletivos</a>
+                        <a class="nav-link" href="/gerenciar_entrevista_candidato">Entrevistas</a>
+                        <a class="nav-link" href="/gerar_relatorio">Relatórios</a>
+                        <a class="nav-link" href="/usuario_sair">Sair</a>
+                    </div>
+                </div>
+            <?php } elseif($_SESSION['tipo_user'] == 3) { ?>
+                <!-- Usuário gestor -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" href="/home">Home</a>
+                        <a class="nav-link" href="">Gestor</a>
+                        <a class="nav-link" href="/requisicoes_vaga">Requisições</a>
+                        <a class="nav-link" href="/gerenciar_processo_seletivo">Processos Seletivos</a>
+                        <a class="nav-link" href="/gerenciar_entrevista_candidato">Entrevistas</a>
+                        <a class="nav-link" href="/usuario_sair">Sair</a>               
+                    </div>
+                </div>
+            <?php } elseif($_SESSION['tipo_user'] == 4) { ?>
+                <!-- Usuário Chefe -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" href="/home">Home</a>
+                        <a class="nav-link" href="">Líder</a>
+                        <a class="nav-link" href="/requisicoes_vaga">Requisições</a>
+                        <a class="nav-link" href="/gerenciar_processo_seletivo">Processos Seletivos</a>
+                        <a class="nav-link" href="/gerenciar_entrevista_candidato">Entrevistas</a>
+                        <a class="nav-link" href="/usuario_sair">Sair</a>               
+                    </div>
+                </div>
+            <?php } elseif($_SESSION['tipo_user'] == 5) { ?>
+                <!-- Usuário adm -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" href="/home">Home</a>
+                        <a class="nav-link" href="">Admin</a>
+                        <a class="nav-link" href="/gerenciar_candidato">Candidatos</a>
+                        <a class="nav-link" href="/requisicoes_vaga">Requisições</a>
+                        <a class="nav-link" href="/gerenciar_vaga">Vagas</a>
+                        <a class="nav-link" href="/gerenciar_processo_seletivo">Processos Seletivos</a>
+                        <a class="nav-link" href="/gerenciar_entrevista_candidato">Entrevistas</a>
+                        <a class="nav-link" href="/gerar_relatorio">Relatórios</a>
+                        <a class="nav-link" href="/usuario_sair">Sair</a>
+                    </div>
+                </div>
+            <?php } else { ?>    
+                <!-- Usuário sem identificação -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        <a class="nav-link" href="/usuario_entrar">Entrar</a>
+                        <a class="nav-link" href="/#sobre_nos">Sobre</a>
+                        <a class="nav-link" href="/#quem_somos">Quem Somos</a>
+                        <a class="nav-link" href="/#nossa_equipe">Nossos Líderes</a>
+                        <a class="nav-link" href="/#vagas_abertas">Trabalhe Conosco</a>
+                        <a class="nav-link" href="/#contate_nos">Contato</a>
+                    </div>
+                </div>
+            <?php } ?>    
+            
+            
         </div>
     </nav>
 
     <!--Body-->
-    <form action="requisitante.php" method="post">
+    <form action="" method="post">
         <div class="container">
             <!--slider-->
             <div class="slide-area">
@@ -85,7 +158,7 @@
 
             <!--Sobre nós-->
             <div class="about-area">
-                <div id="scroll-1"></div>
+                <div id="sobre_nos"></div>
                 <div class="card-about">
                     <div class="icon-about-area">
                         <img class="icon-about" src="/images/home/eletron.svg">
@@ -116,7 +189,7 @@
 
             <!--quem somos-->
             <div class="dark-area">
-                <div id="scroll-2"></div>
+                <div id="quem_somos"></div>
                 <div class="dark-block">
                     <h1 class="quem-somos-title">Quem Somos?</h1>
 
@@ -198,7 +271,7 @@
 
             <!--Teams-->
             <div class="team-area">
-                <div id="scroll-3"></div>
+                <div id="nossa_equipe"></div>
                 <h1 class="lideres-title">Nossos Líderes</h1>
                 <div class="team-section">
                     <div class="person">
@@ -237,46 +310,47 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
 
             <!--Vagas-->
             <div class="job-area" id="jobs">
-                <div id="scroll-4"></div>
+                <div id="vagas_abertas"></div>
                 <h1 class="title-job">Vagas Disponíveis</h1>
 
                 <div class="left-btn" onclick="preCard()"></div>
                 <div class="right-btn" onclick="nextCard()"></div>
 
                 <div class="carrousel">
-                    <div class="card vaga" id="1">
-                        <div class="title-card-area">
-                            <h1 class="title-card" id="">
-                                Engenheiro Elétrico Júnior 1
-                            </h1>
-                        </div>
+                    <?php $cont = 1;
+                        foreach($this->view->vagasDivulgar as $key => $vaga) { 
+                    ?>
+                        <div class="card vaga" id="<?=$cont?>">
+                            <div class="title-card-area">
+                                <h1 class="title-card" id=""><?= $vaga->nome_cargo?></h1>
+                            </div>
 
-                        <div class="text-card-area">
-                            <p class="text-card">
-                                Sorocaba - SP
-                            </p>
-                        </div>
+                            <div class="text-card-area">
+                                <p class="text-card">
+                                    Sorocaba - SP
+                                </p>
+                            </div>
 
-                        <div class="text-card-area">
-                            <p class="text-card">Salário: <label>R$ X</label></p>
-                        </div>
+                            <div class="text-card-area">
+                                <p class="text-card">Salário: <label>R$ <?= $vaga->salario?></label></p>
+                            </div>
 
-                        <div class="text-card-area">
-                            <p class="text-card">Vagas Abertas: <label>X</label></p>
+                            <div class="text-card-area">
+                                <p class="text-card">Vagas Abertas: <label><?= $vaga->num_vagas ?></label></p>
+                            </div>
+                            <a href="/visualizar_vaga_candidato?vaga=<?=$vaga->id_vaga?>" class="btn-view-job">Visualizar</a>
                         </div>
-
-                        <button class="btn-view-job">Visualizar</button>
-                    </div>
+                    <?php $cont++;} ?>
                 </div>
             </div>
 
             <!--Contact us-->
             <div class="contact-area">
-                <div id="scroll-5"></div>
+                <div id="contate_nos"></div>
                 <h1 class="title-contact">Contate-nos</h1>
 
                 <div class="contact-section">
@@ -284,13 +358,13 @@
                         <div class="inputs">
                             <div class="form-row">
                                 <div class="input-data">
-                                    <input type="text" required>
+                                    <input type="text">
                                     <div class="underline"></div>
                                     <label>Primeiro Nome</label>
                                 </div>
 
                                 <div class="input-data">
-                                    <input type="text" required>
+                                    <input type="text">
                                     <div class="underline"></div>
                                     <label>Último Nome</label>
                                 </div>
@@ -298,13 +372,13 @@
 
                             <div class="form-row">
                                 <div class="input-data">
-                                    <input type="email" id="email" onmouseout="verificar()" required>
+                                    <input type="email" id="email" onmouseout="verificar()">
                                     <div class="underline"></div>
                                     <label id="label-email">E-mail</label>
                                 </div>
 
                                 <div class="input-data">
-                                    <input type="text" required>
+                                    <input type="text">
                                     <div class="underline"></div>
                                     <label>Assunto</label>
                                 </div>
@@ -312,7 +386,7 @@
 
                             <div class="form-row text-area">
                                 <div class="input-data textarea">
-                                    <textarea cols="30" rows="10" required></textarea>
+                                    <textarea cols="30" rows="10"></textarea>
                                     <div class="underline"></div>
                                     <label>Escreva sua mensagem</label>
                                 </div>

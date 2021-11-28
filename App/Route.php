@@ -7,11 +7,18 @@
     class Route extends Bootstrap{
         
         protected function initRoutes() {
+            $routes['/'] = array(
+                'route'=>'/',
+                'controller'=>'GeneralScreensController',
+                'action'=>'index'
+            );
+
             $routes['home'] = array(
                 'route'=>'/home',
                 'controller'=>'GeneralScreensController',
                 'action'=>'index'
             );
+            
 
             // Cadastrar Processo Seletivo
             $routes['processo_seletivo'] = array(
@@ -38,6 +45,12 @@
                 'action'=>'visualizarProcessoSeletivo'
             );
 
+            $routes['divulgar_processo_seletivo'] = array(
+                'route'=>'/divulgar_processo_seletivo',
+                'controller'=>'EmployeeScreensController',
+                'action'=>'divulgarProcessoSeletivo'
+            );
+
 
             //Registrar Entrevista
             $routes['entrevista_registrar'] = array(
@@ -51,6 +64,19 @@
                 'controller'=>'ManagerScreensController',
                 'action'=>'entrevistaCandidatoRegistrar'
             );
+
+            $routes['entrevista_registrada'] = array(
+                'route'=>'/entrevista_registrada',
+                'controller'=>'ManagerScreensController',
+                'action'=>'entrevistaRegistrada'
+            );
+
+            $routes['visualizar_entrevista_registrada'] = array(
+                'route'=>'/visualizar_entrevista_registrada',
+                'controller'=>'ManagerScreensController',
+                'action'=>'visualizarEntrevistaRegistrada'
+            );
+
 
             // Marcar Entrevista
             $routes['entrevista_marcar'] = array(
@@ -102,6 +128,30 @@
                 'action'=>'requisicoesVagas'
             );
 
+            $routes['gerenciar_vaga'] = array(
+                'route'=>'/gerenciar_vaga',
+                'controller'=>'ManagerScreensController',
+                'action'=>'gerenciarVaga'
+            );
+
+            $routes['visualizar_vaga'] = array(
+                'route'=>'/visualizar_vaga',
+                'controller'=>'ManagerScreensController',
+                'action'=>'visualizarVaga'
+            );
+
+            $routes['vaga_aprovar'] = array(
+                'route'=>'/vaga_aprovar',
+                'controller'=>'ManagerScreensController',
+                'action'=>'vagaAprovar'
+            );
+
+            $routes['alterar_vaga_visualizar'] = array(
+                'route'=>'/alterar_vaga_visualizar',
+                'controller'=>'ManagerScreensController',
+                'action'=>'alterarVagaVisualizar'
+            );
+
             // Teste
             $routes['atribuir_teste'] = array(
                 'route'=>'/atribuir_teste',
@@ -113,6 +163,12 @@
                 'route'=>'/cadastrar_teste',
                 'controller'=>'EmployeeScreensController',
                 'action'=>'cadastrarTeste'
+            );
+
+            $routes['realizar_teste'] = array(
+                'route'=>'/realizar_teste',
+                'controller'=>'CandidateScreensController',
+                'action'=>'renderizaTeste'
             );
 
             // Perfil Candidato
@@ -128,6 +184,36 @@
                 'action'=>'editarPerfilSalvar'
             );
 
+            $routes['perfil_ver'] = array(
+                'route'=>'/perfil_ver',
+                'controller'=>'CandidateScreensController',
+                'action'=>'perfilVer'
+            );
+
+            $routes['vaga_candidatada_ver'] = array(
+                'route'=>'/vaga_candidatada_ver',
+                'controller'=>'CandidateScreensController',
+                'action'=>'vagaCandidatadaVer'
+            );
+
+            $routes['realizar_teste'] = array(
+                'route'=>'/realizar_teste',
+                'controller'=>'CandidateScreensController',
+                'action'=>'realizarTeste'
+            );
+
+            $routes['visualizar_vaga_candidato'] = array(
+                'route'=>'/visualizar_vaga_candidato',
+                'controller'=>'CandidateScreensController',
+                'action'=>'visualizarVaga'
+            );
+
+            $routes['candidatarse_vaga'] = array(
+                'route'=>'/candidatarse_vaga',
+                'controller'=>'CandidateScreensController',
+                'action'=>'candidatar'
+            );
+
             // Cadastro Usuário
             $routes['usuario_cadastrar'] = array(
                 'route'=>'/usuario_cadastrar',
@@ -139,6 +225,80 @@
                 'route'=>'/usuario_cadastrar_salvar',
                 'controller'=>'GeneralScreensController',
                 'action'=>'usuarioCadastrarSalvar'
+            );
+
+            // Controle Usuário
+            $routes['usuario_entrar'] = array(
+                'route'=>'/usuario_entrar',
+                'controller'=>'GeneralScreensController',
+                'action'=>'usuarioEntrar'
+            );
+
+            $routes['usuario_logar'] = array(
+                'route'=>'/usuario_logar',
+                'controller'=>'GeneralScreensController',
+                'action'=>'usuarioLogar'
+            );
+
+            $routes['usuario_entrar_validar'] = array(
+                'route'=>'/usuario_entrar_validar',
+                'controller'=>'GeneralScreensController',
+                'action'=>'usuarioEntrarValidar'
+            );
+
+            $routes['usuario_sair'] = array(
+                'route'=>'/usuario_sair',
+                'controller'=>'GeneralScreensController',
+                'action'=>'usuarioSair'
+            );
+
+            $routes['exibir_popup'] = array(
+                'route'=>'/exibir_popup',
+                'controller'=>'GeneralScreensController',
+                'action'=>'exibirPopup'
+            );
+
+            $routes['usuario_recuperar_senha'] = array(
+                'route'=>'/usuario_recuperar_senha',
+                'controller'=>'GeneralScreensController',
+                'action'=>'usuarioRecuperarSenha'
+            );
+
+            $routes['usuario_recuperar_senha_codigo'] = array(
+                'route'=>'/usuario_recuperar_senha_codigo',
+                'controller'=>'GeneralScreensController',
+                'action'=>'usuarioRecuperarSenhaCodigo'
+            );
+
+            // Relatórios
+            $routes['gerar_relatorio'] = array(
+                'route'=>'/gerar_relatorio',
+                'controller'=>'EmployeeScreensController',
+                'action'=>'gerarRelatorio'
+            );
+
+            $routes['gerar_relatorio_indicadores_desempenho'] = array(
+                'route'=>'/gerar_relatorio_indicadores_desempenho',
+                'controller'=>'EmployeeScreensController',
+                'action'=>'gerarRelatorioIndicadoresDesempenho'
+            );
+
+            $routes['gerar_relatorio_quadro_vagas'] = array(
+                'route'=>'/gerar_relatorio_quadro_vagas',
+                'controller'=>'EmployeeScreensController',
+                'action'=>'gerarRelatorioQuadroVagas'
+            );
+
+            $routes['gerar_relatorio_recrutamento_selecao'] = array(
+                'route'=>'/gerar_relatorio_recrutamento_selecao',
+                'controller'=>'EmployeeScreensController',
+                'action'=>'gerarRelatorioRecrutamentoSelecao'
+            );
+
+            $routes['gerenciar_candidato'] = array(
+                'route'=>'/gerenciar_candidato',
+                'controller'=>'EmployeeScreensController',
+                'action'=>'gerenciarCandidato'
             );
 
             $this->setRoutes($routes);
