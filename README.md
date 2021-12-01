@@ -14,8 +14,8 @@ A arquitetura do programa é a MVC(Model-View-Controller).
 
 ## Tecnologias Utilizadas
 
-As tecnologias utilizadas para o desenvolvimento dessa aplicação foram:
-Front-end: **HTML,CSS,JS,Bootstrap**<br>
-Back-end:**PHP**<br>
-Banco de Dados: **MySql**<br>
-Gerenciador de Pacotes: **Composer**<br>
+As tecnologias utilizadas para o desenvolvimento dessa aplicação foram:<br>
+Front-end: **HTML,CSS,JS,Bootstrap;**<br>
+Back-end:**PHP;**<br>
+Banco de Dados: **MySql;**<br>
+Gerenciador de Pacotes: **Composer;**<br>
