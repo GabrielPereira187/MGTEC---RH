@@ -1,4 +1,4 @@
-# Repositório do trabalho de graduação - MGTECRH
+# Repositório do Trabalho de Graduação - MGTECRH
 
 Esse repositório é destinado para o projeto de Trabalho de Graduação para a Fatec Sorocaba, foi desenvolvida uma aplicação Web para o setor de Recursos Humanos Recrutamento e Seleção da empresa Mogetec.
 
