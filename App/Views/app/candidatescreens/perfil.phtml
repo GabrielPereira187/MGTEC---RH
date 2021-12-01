@@ -1,30 +1,22 @@
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap / CSS -->
-    <link rel="stylesheet" href="/styles/custom-editar-perfil.css">
-    <link rel="stylesheet" href="/styles/pop-up.css">
+    <link rel="stylesheet" href="/styles/custom-perfil.css">
 
-    <title>Editar Perfil Candidato</title>
+    <title>Perfil Candidato</title>
 
     <script type="text/javascript">
-        let cidades = <?php echo json_encode($this->view->cidades) ?>;
         let experiencias = <?php echo json_encode($this->view->perfilExperiencia) ?>;
         let competencias =  <?php echo json_encode($this->view->perfilCompetencia) ?>;
         let formacoes =  <?php echo json_encode($this->view->perfilFormacao) ?>;
-
-        let sexo = <?php echo json_encode($this->view->detalhesPerfilCandidato->sexo) ?>;
-        let tipoPessoa = <?php echo json_encode($this->view->detalhesPerfilCandidato->tipo_pessoa) ?>;
-        let cidade = <?php echo json_encode($this->view->detalhesPerfilCandidato->id_cidade) ?>;
-        let estado = <?php echo json_encode($this->view->detalhesPerfilCandidato->id_estado) ?>;
-        let status_c = <?php echo json_encode($this->view->detalhesPerfilCandidato->c_status) ?>;
     </script>
-
+                
 </head>
 
 <body>
@@ -53,52 +45,15 @@
         </div>
     </nav>
 
-    <?php
-        if (isset($_GET['editarPerfilSalvar'])) {
-        ?>
-
-    <script>
-    alert("Perfil Salvo com Sucesso!");
-    </script>
-
-    <?php
-        }
-    ?>
-
-    <!--Pop-up area-->
-    <div class="popup-container" id="popup-info">
-        <!--onclick="Open('popup-info')"-->
-        <!--<link rel="stylesheet" href="../../../../Public/styles/pop-up.css">-->
-        <!--<script src="../../../../Public/scripts/general-scripts/pop-up.js"></script>-->
-        <div class="popup-content">
-            <div class="popup-close" title="Close" onclick="Close(this)">
-                <img src="/images/global/close.svg">
-            </div>
-
-            <img src="/images/pop-up/info.svg" class="popup-img">
-
-            <h1 class="popup-title">Editar Perfil</h1>
-
-            <p class="popup-description">Escreva um pouco sobre você para que possamos te conhecer melhor!</p>
-
-            <button type="button" class="popup-btn popup-btn-width" onclick="Close(this)">
-                Entendi!
-            </button>
-        </div>
-    </div>
-
-    <!--Page user-->
-    <form action="editar_perfil_salvar" method="post" id="formulario">
+    <!--body-->
+    <form action="requisitante.php" method="post" id="formulario">
         <div class="container">
 
             <!--parte de cima do perfil-->
             <div class="row d-flex justify-content-center perfil-box">
 
                 <div class="row row-img-names">
-                    <div class="img-perfil" onClick="acionarBtn()">
-                        <img src="/images/global/edit.svg" class="img-edit">
-                        <input type="file" name="foto" id="btn-foto" class="btn-over" />
-                    </div>
+                    <div class="img-perfil"></div>
 
                     <div class="names">
                         <h1 class="nome-perfil"><?=$_SESSION['nome']?></h1>
@@ -106,31 +61,23 @@
                     </div>
                 </div>
 
-                <div class="sobre-area">
-                    <div class="title">
-                        <h2 class="title-2">Sobre <img src="/images/global/edit.svg" alt="edit"></h2>
-                        <img src="/images/global/info.svg" class="img-info-2" onclick="Open('popup-info')">
-                    </div>
-                    <div class="col-sm-12 mb-3">
-                        <textarea type="text" class="form-control text-area" name="sobre"><?= isset($this->view->detalhesPerfilCandidato->sobre) ? $this->view->detalhesPerfilCandidato->sobre : ''; ?></textarea>
-                    </div>
-                </div>
+                <p class="mb-3 descricao-perfil">
+                    <?= isset($this->view->detalhesPerfilCandidato->sobre) ? $this->view->detalhesPerfilCandidato->sobre : ''; ?>
+                </p>
 
                 <div class="buttons">
-                    <button type="button" class="btn btn-outline-primary mb-2 select">Editar Perfil</button>
+                    <a href="/editar_perfil">
+                        <button type="button" class="btn btn-outline-primary mb-2">Editar Perfil</button>
+                    </a>
                     <a href="/vaga_candidatada_ver">
                         <button type="button" class="btn btn-outline-primary mb-2">Vagas Candidatadas</button>
                     </a>
                 </div>
             </div>
 
-            <hr class="mb-1">
+            <hr class="mb-4">
 
             <!--parte de baixo do perfil-->
-            <span class="asterisco">*</span>
-            <span class="descricao-edicao">
-                Todos os campos marcados com asterisco são obrigatórios para se candidatar.
-            </span>
 
             <!--dados pessoais-->
             <div class="title">
@@ -138,78 +85,66 @@
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="colsm-2 form-label">Data de Nascimento
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="colsm-2 form-label">Data de Nascimento</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" id="colFormLabel" placeholder=""
-                        name="data-de-nascimento" value="<?= isset($this->view->detalhesPerfilCandidato->data_nasc) ? $this->view->detalhesPerfilCandidato->data_nasc : ''; ?>">
+                    <input type="date" class="form-control" id="colFormLabel" placeholder="" name="data-de-nascimento"
+                        readonly value="<?= isset($this->view->detalhesPerfilCandidato->data_nasc) ? $this->view->detalhesPerfilCandidato->data_nasc : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="colFormLabel" class="colsm-2 form-label">Sexo</label>
                 <div class="col-sm-10">
-                    <select name="sexo" id="colFormLabel" class="col form-select"> 
-                        <option value="1">Masculino</option>
-                        <option value="2">Feminino</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row mb-3 dados">
-                <label for="role" class="col-sm-2 form-label form-label-interview">Tipo Pessoa</label>
-                <div class="col-sm-10">
-                    <select class="col form-select" name="tipo_pessoa">
-                        <option value="1">Fisíca</option>
-                        <option value="2">Jurídica</option>
-                    </select>
+                    <?php
+                        $sexo = isset($this->view->detalhesPerfilCandidato->sexo) ? $this->view->detalhesPerfilCandidato->sexo : '';
+                        if($sexo== 1) {
+                            $sexo = 'Masculino';
+                        } else if($sexo == 2) {
+                            $sexo = 'Feminino';
+                        } 
+                    ?>
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="sexo" 
+                    readonly value="<?=$sexo?>">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="col-sm-2 form-label">CPF
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="col-sm-2 form-label">CPF</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cpf"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->cpf) ? $this->view->detalhesPerfilCandidato->cpf : ''; ?>">
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cpf" 
+                    readonly value="<?= isset($this->view->detalhesPerfilCandidato->cpf) ? $this->view->detalhesPerfilCandidato->cpf : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="colFormLabel" class="col-sm-2 form-label">CNPJ</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cnpj"
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cnpj" readonly
                     value="<?= isset($this->view->detalhesPerfilCandidato->cnpf) ? $this->view->detalhesPerfilCandidato->cnpf : ''; ?>">
                 </div>
             </div>
 
-            <div class="row mb-3 dados">
-                <label for="role" class="col-sm-2 form-label form-label-interview">Cadastro de Pessoa</label>
+            <div class="row mb-3">
+                <label for="colFormLabel" class="col-sm-2 form-label">Disponibilidade</label>
                 <div class="col-sm-10">
-                <input type="text" class="form-control" id="colFormLabel" placeholder=""
-                        name="cadastro-pessoa" value="<?= isset($this->view->detalhesPerfilCandidato->cadastro_pessoa) ? $this->view->detalhesPerfilCandidato->cadastro_pessoa : ''; ?>">
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="disponibilidade"
+                        readonly value="<?= isset($this->view->detalhesPerfilCandidato->disponibilidade) ? $this->view->detalhesPerfilCandidato->disponibilidade : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="col-sm-2 form-label">Disponibilidade
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="col-sm-2 form-label">Status</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="colFormLabel" placeholder=""
-                        name="disponibilidade" value="<?= isset($this->view->detalhesPerfilCandidato->disponibilidade) ? $this->view->detalhesPerfilCandidato->disponibilidade : ''; ?>">
-                </div>
-            </div>
-
-            <div class="row mb-3 dados">
-                <label for="role" class="col-sm-2 form-label form-label-interview">Status</label>
-                <div class="col-sm-10">
-                    <select class="col form-select" name="c_status">
-                        <option value="1">Desempregado</option>
-                        <option value="2">Trabalhando</option>
-                    </select>
+                    <?php
+                        $status = isset($this->view->detalhesPerfilCandidato->c_status) ? $this->view->detalhesPerfilCandidato->c_status : '';
+                        if($status== 1) {
+                            $status = 'Desempregado';
+                        } else if($status == 2) {
+                            $status = 'Trabalhando';
+                        }
+                    ?>
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="status" readonly
+                        value="<?=$status?>">
                 </div>
             </div>
 
@@ -222,28 +157,24 @@
             <div class="row mb-3">
                 <label for="colFormLabel" class="colsm-2 form-label">Telefone</label>
                 <div class="col-sm-10">
-                    <input type="tel" class="form-control" id="colFormLabel" placeholder="" name="telefone"  
-                    maxlength="15" value="<?= isset($this->view->detalhesPerfilCandidato->telefone) ? $this->view->detalhesPerfilCandidato->telefone : '';?>">
+                    <input type="tel" class="form-control" id="colFormLabel" placeholder="" name="telefone" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->telefone) ? $this->view->detalhesPerfilCandidato->telefone : '';?>">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="colsm-2 form-label">Celular
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="colsm-2 form-label">Celular</label>
                 <div class="col-sm-10">
-                    <input type="tel" class="form-control" id="colFormLabel" placeholder="" name="celular"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->celular) ? $this->view->detalhesPerfilCandidato->celular : ''; ?>">
+                    <input type="tel" class="form-control" id="colFormLabel" placeholder="" name="celular" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->celular) ? $this->view->detalhesPerfilCandidato->celular : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="col-sm-2 form-label">E-mail
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="col-sm-2 form-label">E-mail</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="colFormLabel" placeholder="" name="email"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->email) ? $this->view->detalhesPerfilCandidato->email : ''; ?>">
+                    <input type="email" class="form-control" id="colFormLabel" placeholder="" name="email" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->email) ? $this->view->detalhesPerfilCandidato->email : ''; ?>">
                 </div>
             </div>
 
@@ -254,68 +185,50 @@
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="colsm-2 form-label">CEP
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="colsm-2 form-label">CEP</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cep"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->cep) ? $this->view->detalhesPerfilCandidato->cep : ''; ?>">
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cep" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->cep) ? $this->view->detalhesPerfilCandidato->cep : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="colsm-2 form-label">Estado
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="colsm-2 form-label">Estado</label>
                 <div class="col-sm-10">
-                    <select class="col form-select form1" name="estado" onchange="atribuiEstado(this)">
-                        <option value="0">--Selecione--</option>
-                        <?php foreach ($this->view->estados as $key => $estados) { ?>
-                        <option value="<?=$estados->id_estado?>">
-                            <?= $estados->nome ?>
-                        </option>
-                        <?php } ?>
-                    </select>
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="estado" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->estado) ? $this->view->detalhesPerfilCandidato->estado : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="colFormLabel" class="col-sm-2 form-label">Cidade
-                    <span class="asterisco-2">*</span>
-                </label>
+                <label for="colFormLabel" class="col-sm-2 form-label">Cidade</label>
                 <div class="col-sm-10">
-                    <select class="col form-select form1" name="cidade">
-                        <option value="0">--Selecione--</option>
-                        <?php foreach ($this->view->cidades as $key => $cidades) { ?>
-                        <option value="<?=$cidades->id_cidade?>">
-                            <?= $cidades->nome ?>
-                        </option>
-                        <?php } ?>
-                    </select>
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="cidade" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->cidade) ? $this->view->detalhesPerfilCandidato->cidade : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="colFormLabel" class="col-sm-2 form-label">Bairro</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="bairro"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->bairro) ? $this->view->detalhesPerfilCandidato->bairro : ''; ?>">
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="bairro" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->bairro) ? $this->view->detalhesPerfilCandidato->bairro : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="colFormLabel" class="col-sm-2 form-label">Rua</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="rua"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->rua) ? $this->view->detalhesPerfilCandidato->rua : ''; ?>">
+                    <input type="text" class="form-control" id="colFormLabel" placeholder="" name="rua" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->rua) ? $this->view->detalhesPerfilCandidato->rua : ''; ?>">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="colFormLabel" class="col-sm-2 form-label">Número</label>
                 <div class="col-sm-10 mb-3">
-                    <input type="number" class="form-control" id="colFormLabel" placeholder="" name="numero"
-                    value="<?= isset($this->view->detalhesPerfilCandidato->num_casa) ? $this->view->detalhesPerfilCandidato->num_casa : ''; ?>">
+                    <input type="number" class="form-control" id="colFormLabel" placeholder="" name="cidade" readonly
+                        value="<?= isset($this->view->detalhesPerfilCandidato->num_casa) ? $this->view->detalhesPerfilCandidato->num_casa : ''; ?>">
                 </div>
             </div>
 
@@ -332,7 +245,7 @@
 
                 <div class="row mb-3">
                     <select class="col form-select cl-exp-formacao form3" aria-label="Experiência"
-                        name="exp-fomacao-1">
+                        name="exp-fomacao-1" readonly>
                         <option value="0">Experiência</option>
                         <option value="1">Administrativa</option>
                         <option value="2">Elétrica</option>
@@ -344,7 +257,7 @@
                         <option value="8">Logística</option>
                     </select>
 
-                    <select class="col form-select cl-exp-status form3" aria-label="Status" name="exp-status-1">
+                    <select class="col form-select cl-exp-status form3" aria-label="Status" name="exp-status-1" readonly>
                         <option value="0">Status</option>
                         <option value="1">Experiência Qualquer</option>
                         <option value="2">Júnior</option>
@@ -355,15 +268,10 @@
 
                 <div class="row">
                     <label for="colFormLabel" class="col-sm-2 form-label exp-label">Anos de Experiência:</label>
-                    <div class="col number">
-                        <input type="number" class="form-control cl-exp-anos-experiencia" id="colFormLabel"
-                            placeholder="00" name="exp-anos-experiencia-1">
+                    <div class="col number mb-3">
+                        <input type="number" class="form-control cl-exp-anos-experiencia" style="min-width: 50px;" id="colFormLabel"
+                            placeholder="" name="exp-anos-experiencia-1" readonly>
                     </div>
-                </div>
-
-                <div id="btn-area-0" class="btn-area-exp">
-                    <img src="/images/custom-requisicao-de-vaga/plus.svg" class="btn-form" onclick="addExp()">
-                    <img src="/images/custom-requisicao-de-vaga/minus.svg" class="btn-form" onclick="removeExp()">
                 </div>
             </div>
 
@@ -379,7 +287,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <select class="col form-select cl-comp-nome form3" aria-label="Nome" name="comp-nome-1">
+                    <select class="col form-select cl-comp-nome form3" aria-label="Nome" name="comp-nome-1" readonly>
                         <option value="0">Nome</option>
                         <option value="1">Gestão de Pessoas</option>
                         <option value="2">Análise de Requisitos</option>
@@ -393,7 +301,7 @@
                         <option value="10">Inglês</option>
                     </select>
 
-                    <select class="col form-select cl-comp-grau form3" aria-label="Grau" name="comp-grau-1">
+                    <select class="col form-select cl-comp-grau form3" aria-label="Grau" name="comp-grau-1" readonly>
                         <option value="0">Grau</option>
                         <option value="1">Básico</option>
                         <option value="2">Intermediário</option>
@@ -403,18 +311,13 @@
 
                 <div class="row">
                     <div class="col mb-3">
-                        <select class="col form-select cl-comp-status form4" aria-label="Status" name="comp-status-1">
+                        <select class="col form-select cl-comp-status form3" style="margin-left: 0;" aria-label="Status" name="comp-status-1" readonly>
                             <option value="0">Status</option>
                             <option value="1">Iniciante</option>
                             <option value="2">Em Desenvolvimento</option>
                             <option value="3">Concluído</option>
                         </select>
-                    </div>    
-                </div>
-
-                <div id="btn-area-comp-0" class="btn-area-comp">
-                    <img src="/images/custom-requisicao-de-vaga/plus.svg" class="btn-form" onclick="addComp()">
-                    <img src="/images/custom-requisicao-de-vaga/minus.svg" class="btn-form" onclick="removeComp()">
+                    </div>
                 </div>
             </div>
 
@@ -430,7 +333,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <select class="col form-select cl-form-tipo form3" aria-label="Tipo" name="form-tipo-1">
+                <select class="col form-select cl-form-tipo form3" aria-label="Tipo" name="form-tipo-1" readonly>
                         <option value="0">Tipo</option>
                         <option value="1">Fundamental</option>
                         <option value="2">Ensino médio</option>
@@ -438,7 +341,7 @@
                         <option value="4">Superior</option>
                     </select>
 
-                    <select class="col form-select cl-form-status form3" aria-label="Status" name="form-status-1">
+                    <select class="col form-select cl-form-status form3" aria-label="Status" name="form-status-1" readonly>
                         <option value="0">Status</option>
                         <option value="1">Completo</option>
                         <option value="2">Em Andamento</option>
@@ -447,7 +350,7 @@
                 </div>
 
                 <div class="row">
-                    <select class="col form-select cl-form-nome form3" aria-label="Nome" name="form-nome-1">
+                    <select class="col form-select cl-form-nome form3" aria-label="Nome" name="form-nome-1" readonly>
                         <option value="0">Nome</option>
                         <option value="1">Análise e Desenvolvimento de Sistemas</option>
                         <option value="2">Redes</option>
@@ -461,7 +364,7 @@
                         <option value="10">Administração</option>
                     </select>
 
-                    <select class="col form-select cl-form-grau form3" aria-label="Grau" name="form-grau-1">
+                    <select class="col form-select cl-form-grau form3" aria-label="Grau" name="form-grau-1" readonly>
                         <option value="0">Grau</option>
                         <option value="1">Tecnólogo</option>
                         <option value="2">Graduação</option>
@@ -470,14 +373,7 @@
                         <option value="4">Doutorado</option>
                     </select>
                 </div>
-
-                <div id="btn-area-form-0" class="btn-area-form">
-                    <img src="/images/custom-requisicao-de-vaga/plus.svg" class="btn-form" onclick="addForm()">
-                    <img src="/images/custom-requisicao-de-vaga/minus.svg" class="btn-form" onclick="removeForm()">
-                </div>
             </div>
-
-            <hr>
 
             <!--Currículo-->
             <div class="title">
@@ -491,11 +387,9 @@
 
                 <div class="col col-btns">
                     <div class="buttons">
-                        <button type="button" class="btn btn-outline-primary mb-2" onClick="acionarBtn2()">
+                        <button type="button" class="btn btn-outline-primary mb-2">
                             <img src="/images/custom-perfil/upload.svg">
                             Upload</button>
-
-                        <input type="file" name="curriculo" class="btn-over" id="btn-curriculo" />
                     </div>
                     <div class="buttons">
                         <button type="button" class="btn btn-outline-primary mb-2">
@@ -512,10 +406,9 @@
 
 
             <div class="buttons">
-                <a href="/perfil_ver">
+                <a href="perfil_ver">
                     <button type="button" class="btn btn-outline-primary mb-5">Voltar</button>
                 </a>
-                <button type="submit" class="btn btn-outline-primary mb-5">Concluir</button>
             </div>
         </div>
     </form>
@@ -530,17 +423,14 @@
 
     <!--Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
-    </script>
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        crossorigin="anonymous"></script>
 
     <script src="/scripts/manager-scripts/gerar-requisicao-de-vaga.js"></script>
-    <script src="/scripts/candidate-scripts/editar-perfil.js"></script>
-    <script src="/scripts/general-scripts/pop-up.js"></script>
     <script>
         insereExperienciaPerfil();
         insereCompetenciaPerfil();
         insereFormacaoPerfil();
-        insereInfoPerfil();
     </script>
 </body>
 

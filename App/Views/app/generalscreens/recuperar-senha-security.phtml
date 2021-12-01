@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap / CSS -->
-    <link rel="stylesheet" href="/styles/custom-registro.css">
+    <link rel="stylesheet" href="/styles/custom-recuperar-senha-security.css">
 
-    <title>Registro</title>
+    <title>Recuperar Senha (Código de Segurança)</title>
 </head>
 
 <body>
@@ -37,70 +37,47 @@
         </div>
     </nav>
 
-    <?php
-    if (isset($_GET['usuarioCadastrar'])) {
-    ?>
-
-        <script>
-            alert("Usuário Salvo com Sucesso!");
-        </script>
-
-    <?php
-    }
-    ?>
-
     <!--body-->
-    <form action="/usuario_cadastrar_salvar" method="post" id="myForm">
+    <form action="requisitante.php" method="post">
         <div class="container">
             <div class="login-content">
-                <h1>Registro</h1>
+                <h1>Recuperar Senha</h1>
 
                 <div class="textbox">
                     <img src="/images/login/user.svg">
-                    <input type="text" placeholder="Nome de Usuário/E-mail" name="login" id="login">
+                    <input type="text" placeholder="Nome de Usuário" name="nome-usuario">
                 </div>
 
                 <div class="textbox">
                     <img class="img-email" src="/images/global/email.svg">
-                    <input type="email" placeholder="E-mail" name="email" id="email">
-                </div>
-
-                <div class="textbox">
-                    <img class="img-email" src="/images/global/email.svg">
-                    <input type="email" placeholder="Repetir E-mail" name="email-repetido" id="email-2">
-                </div>
-
-                <div class="textbox">
-                    <img src="/images/login/user.svg">
-                    <input type="textbox" placeholder="Nome" name="nome" id="nome">
-                </div>
-
-                <div class="textbox">
-                    <img src="/images/login/lock.svg">
-                    <input type="password" placeholder="Senha" name="senha" id="password">
-                    <img src="/images/login/eye-off.svg" id="eye-img" class="eye">
+                    <input type="text" placeholder="E-mail" name="email">
                 </div>
 
                 <div class="textbox txt">
                     <img src="/images/login/lock.svg">
-                    <input type="password" placeholder="Repetir Senha" name="senha-repetida" id="password-2">
-                    <img src="/images/login/eye-off.svg" id="eye-img-2" class="eye">
+                    <input type="text" placeholder="Código de Segurança" name="codigo-seguranca">
                 </div>
 
-                <a class="btn-link" onclick="cadastrar()">
-                        <div class="effect">
-                            <span>Cadastrar</span>
-                            <input class="btn" type="submit" value="Cadastrar">
-                        </div>
+                <a class="btn-link" href="/usuario_recuperar_senha">
+                    <div class="effect">
+                        <span class="txt-codigo">Enviar Código ao E-mail</span>
+                        <input class="btn" type="submit" disabled>
+                    </div>
+                </a>
+
+                <a class="btn-link" href="/usuario_cadastrar">
+                    <div class="effect">
+                        <span>Registrar</span>
+                        <input class="btn" type="button" disabled>
+                    </div>
                 </a>
 
                 <a class="btn-link" href="/usuario_entrar">
                     <div class="effect">
                         <span>Voltar</span>
-                        <input class="btn" type="button">
+                        <input class="btn" type="button" disabled>
                     </div>
                 </a>
-
             </div>
         </div>
     </form>
@@ -118,7 +95,7 @@
         integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
         crossorigin="anonymous"></script>
 
-    <script src="/scripts/general-scripts/login.js"></script>
+    <script src="/scripts/manager-scripts/gerar-requisicao-de-vaga.js"></script>
 </body>
 
 </html>

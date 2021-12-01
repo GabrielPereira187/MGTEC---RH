@@ -49,6 +49,19 @@
     background-color: transparent;
 }
 
+.container{
+    min-height: 100vh;
+}
+
+.footer{
+    position: relative;
+}
+
+.botao{
+    margin-top: -90px;
+    margin-left: 120px;
+}
+
 /*@media screens*/
 @media screen and (min-width:576px){
 
